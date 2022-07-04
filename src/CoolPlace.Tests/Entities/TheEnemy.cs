@@ -1,7 +1,6 @@
 using CoolPlace.Core.Actions;
 using CoolPlace.Core.Entities;
 using CoolPlace.Core.Handlers;
-using Moq;
 
 namespace CoolPlace.Tests.Entities
 {
@@ -15,6 +14,24 @@ namespace CoolPlace.Tests.Entities
         {
             damageHandler = new Mock<IDamageHandler>();
             enemy = new Enemy(damageHandler.Object);
+        }
+
+        public class IsAlive : TheEnemy
+        {
+            [TestCase(0)]
+            [TestCase(-1)]
+            public void WhenHealthIsZeroOrLess_ReturnsTrue(int health)
+            {
+                enemy.Health = health;
+                Assert.That(enemy.IsAlive, Is.EqualTo(false));
+            }
+
+            [Test]
+            public void WhenHealthIsGreaterThanZero_ReturnsTrue()
+            {
+                enemy.Health = 1;
+                Assert.That(enemy.IsAlive, Is.EqualTo(true));
+            }
         }
 
         public class WhenAttacking : TheEnemy

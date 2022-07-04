@@ -1,9 +1,9 @@
-﻿using CoolPlace.Core.Entities;
+﻿using CoolPlace.Core.Actions;
 
 namespace CoolPlace.Core.Handlers
 {
     public interface IDamageHandler
     {
-        void Damage(Entity entity, int damageAmount);
+        void Damage(IDamageable entity, int damageAmount);
     }
 }

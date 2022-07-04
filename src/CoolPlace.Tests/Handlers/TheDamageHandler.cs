@@ -1,4 +1,4 @@
-using CoolPlace.Core.Entities;
+using CoolPlace.Core.Actions;
 using CoolPlace.Core.Handlers;
 
 namespace CoolPlace.Tests.Handlers
@@ -13,34 +13,30 @@ namespace CoolPlace.Tests.Handlers
             damageHandler = new DamageHandler();
         }
 
-        public class GivenAnEntity : TheDamageHandler
+        public class GivenSomethingToDamage : TheDamageHandler
         {
-            protected Entity entity;
+            protected Mock<IDamageable> entity;
             public override void Setup()
             {
                 base.Setup();
-                entity = BuildEntity(10);
+                entity = new Mock<IDamageable>();
+                entity.SetupAllProperties();
+                entity.Object.Health = 10;
             }
 
             [Test]
             public void CanDamage()
             {
-                damageHandler.Damage(entity, 1);
-                Assert.That(entity.Health, Is.EqualTo(9));
+                damageHandler.Damage(entity.Object, 1);
+                Assert.That(entity.Object.Health, Is.EqualTo(9));
             }
 
             [Test]
             public void WhenDamageIsGreaterThanRemainingHealth_SetsHealthToZero()
             {
-                damageHandler.Damage(entity, 100);
-                Assert.That(entity.Health, Is.EqualTo(0));
+                damageHandler.Damage(entity.Object, 100);
+                Assert.That(entity.Object.Health, Is.EqualTo(0));
             }
         }
-
-        private TestEntity BuildEntity(int health = 10)
-            => new(damageHandler)
-            {
-                Health = health
-            };
     }
 }

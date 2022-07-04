@@ -6,15 +6,20 @@ namespace CoolPlace.Core.Entities
     /// <summary>
     /// A hostile character to a <see cref="Player" />.
     /// </summary>
-    public class Enemy : Entity, ICanAttack
+    public class Enemy : IEnemy
     {
         private readonly IDamageHandler damageHandler;
-        private const int DamageAmount = 1;
+
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public bool IsAlive { get => Health > 0; }
+        public int DamageAmount { get; set; }
 
         public Enemy(IDamageHandler damageHandler)
         {
             this.damageHandler = damageHandler;
             Name = "Enemy";
+            DamageAmount = 1;
         }
 
         public void Attack(IDamageable entity)
@@ -22,7 +27,7 @@ namespace CoolPlace.Core.Entities
             entity.Damage(DamageAmount);
         }
 
-        public override void Damage(int damageAmount)
+        public void Damage(int damageAmount)
         {
             damageHandler.Damage(this, damageAmount);
         }

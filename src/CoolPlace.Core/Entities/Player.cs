@@ -6,16 +6,21 @@ namespace CoolPlace.Core.Entities
     /// <summary>
     /// A gamer playing the game.
     /// </summary>
-    public class Player : Entity, ICanAttack
+    public class Player : IPlayer
     {
         private readonly IDamageHandler damageHandler;
-        private const int DamageAmount = 10;
+
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public bool IsAlive { get => Health > 0; }
+        public int DamageAmount { get; set; }
 
         public Player(IDamageHandler damageHandler)
         {
             this.damageHandler = damageHandler;
             Name = "Player";
             Health = 100;
+            DamageAmount = 10;
         }
 
         public void Attack(IDamageable entity)
@@ -23,7 +28,7 @@ namespace CoolPlace.Core.Entities
             entity.Damage(DamageAmount);
         }
 
-        public override void Damage(int damageAmount)
+        public void Damage(int damageAmount)
         {
             damageHandler.Damage(this, damageAmount);
         }

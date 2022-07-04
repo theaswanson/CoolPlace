@@ -1,7 +1,8 @@
 ﻿namespace CoolPlace.Core.Actions
 {
-    internal interface ICanAttack
+    public interface ICanAttack
     {
         void Attack(IDamageable entity);
+        int DamageAmount { get; set; }
     }
 }

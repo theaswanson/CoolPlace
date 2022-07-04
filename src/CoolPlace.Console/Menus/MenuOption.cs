@@ -1,4 +1,4 @@
-﻿namespace CoolPlace.Console
+﻿namespace CoolPlace.Console.Menus
 {
     public class MenuOption<T> where T : Enum
     {

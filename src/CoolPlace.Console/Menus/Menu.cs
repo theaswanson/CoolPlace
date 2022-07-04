@@ -1,4 +1,6 @@
-﻿namespace CoolPlace.Console
+﻿using CoolPlace.Console.Utilities;
+
+namespace CoolPlace.Console.Menus
 {
     public abstract class Menu<T> : IMenu<T> where T : Enum
     {

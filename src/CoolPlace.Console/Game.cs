@@ -1,4 +1,6 @@
-﻿namespace CoolPlace.Console
+﻿using CoolPlace.Console.Menus;
+
+namespace CoolPlace.Console
 {
     public class Game
     {

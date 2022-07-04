@@ -1,6 +1,7 @@
-﻿using Figgle;
+﻿using CoolPlace.Console.Utilities;
+using Figgle;
 
-namespace CoolPlace.Console
+namespace CoolPlace.Console.Menus
 {
     public class MainMenu : Menu<MainMenuOption>
     {

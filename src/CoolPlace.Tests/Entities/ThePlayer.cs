@@ -20,7 +20,7 @@ namespace CoolPlace.Tests.Entities
         {
             [TestCase(0)]
             [TestCase(-1)]
-            public void WhenHealthIsZeroOrLess_ReturnsTrue(int health)
+            public void WhenHealthIsZeroOrLess_ReturnsFalse(int health)
             {
                 player.Health = health;
                 Assert.That(player.IsAlive, Is.EqualTo(false));

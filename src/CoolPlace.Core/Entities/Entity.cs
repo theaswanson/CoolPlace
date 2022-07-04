@@ -1,4 +1,6 @@
-﻿namespace CoolPlace.Core
+﻿using CoolPlace.Core.Actions;
+
+namespace CoolPlace.Core.Entities
 {
     /// <summary>
     /// An object with health.

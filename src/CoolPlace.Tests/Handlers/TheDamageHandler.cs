@@ -1,4 +1,7 @@
-namespace CoolPlace.Tests
+using CoolPlace.Core.Entities;
+using CoolPlace.Core.Handlers;
+
+namespace CoolPlace.Tests.Handlers
 {
     public class TheDamageHandler
     {

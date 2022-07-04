@@ -1,4 +1,4 @@
-﻿namespace CoolPlace.Core
+﻿namespace CoolPlace.Core.Actions
 {
     public interface IDamageable
     {

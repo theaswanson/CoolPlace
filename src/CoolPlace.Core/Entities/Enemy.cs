@@ -1,4 +1,7 @@
-﻿namespace CoolPlace.Core
+﻿using CoolPlace.Core.Actions;
+using CoolPlace.Core.Handlers;
+
+namespace CoolPlace.Core.Entities
 {
     /// <summary>
     /// A hostile character to a <see cref="Player" />.

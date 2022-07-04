@@ -1,6 +1,9 @@
+using CoolPlace.Core.Actions;
+using CoolPlace.Core.Entities;
+using CoolPlace.Core.Handlers;
 using Moq;
 
-namespace CoolPlace.Tests
+namespace CoolPlace.Tests.Entities
 {
     public class TheEnemy
     {

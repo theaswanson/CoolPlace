@@ -1,4 +1,4 @@
-﻿namespace CoolPlace.Core
+﻿namespace CoolPlace.Core.Actions
 {
     internal interface ICanAttack
     {

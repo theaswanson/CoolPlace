@@ -1,4 +1,6 @@
-﻿namespace CoolPlace.Core
+﻿using CoolPlace.Core.Entities;
+
+namespace CoolPlace.Core.Handlers
 {
     public interface IDamageHandler
     {

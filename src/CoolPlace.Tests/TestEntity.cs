@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using CoolPlace.Core.Entities;
+using CoolPlace.Core.Handlers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CoolPlace.Tests
 {

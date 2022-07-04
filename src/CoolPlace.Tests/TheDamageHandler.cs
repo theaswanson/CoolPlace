@@ -1,5 +1,3 @@
-using CoolPlace.Core;
-
 namespace CoolPlace.Tests
 {
     public class TheDamageHandler

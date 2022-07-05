@@ -8,7 +8,6 @@ namespace CoolPlace.Tests.Entities
     {
         private Mock<IFighter> attacker;
         private Mock<IFighter> defender;
-        private Fight fight;
 
         [SetUp]
         public virtual void Setup()
@@ -18,8 +17,6 @@ namespace CoolPlace.Tests.Entities
 
             defender = new Mock<IFighter>();
             defender.SetupAllProperties();
-
-            fight = new Fight(attacker.Object, defender.Object);
         }
 
         [TestCase(true, false)]
@@ -29,7 +26,10 @@ namespace CoolPlace.Tests.Entities
         {
             attacker.Setup(a => a.IsAlive).Returns(attackerIsAlive);
             defender.Setup(a => a.IsAlive).Returns(defenderIsAlive);
+            var fight = StartTheFight();
+
             fight.NextTurn();
+            
             Assert.That(fight.HasFinished(), Is.True);
         }
 
@@ -38,8 +38,10 @@ namespace CoolPlace.Tests.Entities
         {
             SetupFighter(attacker, 1, 20);
             SetupFighter(defender, 1, 0);
+            var fight = StartTheFight();
 
             fight.NextTurn();
+
             Assert.That(fight.HasFinished(), Is.True);
         }
 
@@ -48,8 +50,10 @@ namespace CoolPlace.Tests.Entities
         {
             SetupFighter(attacker, 5, 2);
             SetupFighter(defender, 3, 1);
+            var fight = StartTheFight();
 
             fight.NextTurn();
+
             Assert.Multiple(() =>
             {
                 Assert.That(attacker.Object.Health, Is.EqualTo(4));
@@ -58,6 +62,7 @@ namespace CoolPlace.Tests.Entities
             });
 
             fight.NextTurn();
+
             Assert.Multiple(() =>
             {
                 Assert.That(attacker.Object.Health, Is.EqualTo(4));
@@ -70,8 +75,10 @@ namespace CoolPlace.Tests.Entities
         {
             SetupFighter(attacker, 1, 0);
             SetupFighter(defender, 1, 20);
+            var fight = StartTheFight();
 
             fight.NextTurn();
+
             Assert.Multiple(() =>
             {
                 Assert.That(attacker.Object.IsAlive, Is.False);
@@ -86,6 +93,11 @@ namespace CoolPlace.Tests.Entities
             fighter.Object.DamageAmount = damageAmount;
             fighter.Setup(a => a.IsAlive).Returns(() => fighter.Object.Health > 0);
             fighter.Setup(a => a.Attack(It.IsAny<IDamageable>())).Callback<IDamageable>(d => d.Health -= fighter.Object.DamageAmount);
+        }
+
+        private Fight StartTheFight()
+        {
+            return new Fight(attacker.Object, defender.Object);
         }
     }
 }

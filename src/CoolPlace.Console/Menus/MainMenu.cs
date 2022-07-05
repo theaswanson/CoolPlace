@@ -1,4 +1,5 @@
 ﻿using CoolPlace.Console.Utilities;
+using CoolPlace.Core.Options;
 using Figgle;
 
 namespace CoolPlace.Console.Menus
@@ -7,26 +8,17 @@ namespace CoolPlace.Console.Menus
     {
         public MainMenu(ICLI cli) : base(cli)
         {
-            menuOptions = new List<MenuOption<MainMenuOption>>
-            {
-                new (MainMenuOption.Quit),
-                new (MainMenuOption.StartGame, "Start Game"),
-            };
         }
 
         protected override string GetIntro() => FiggleFonts.SubZero.Render("Cool Place");
 
-        public override void Choose(MainMenuOption option)
+        protected override IEnumerable<MenuOption<MainMenuOption>> GetMenuOptions()
         {
-            switch (option)
+            return new List<MenuOption<MainMenuOption>>
             {
-                case MainMenuOption.Quit:
-                    break;
-                case MainMenuOption.StartGame:
-                    break;
-                default:
-                    break;
-            }
+                new (MainMenuOption.Quit),
+                new (MainMenuOption.StartGame, "Start Game"),
+            };
         }
     }
 }

@@ -4,6 +4,7 @@
     {
         int? ReadInt();
         string? ReadString();
+        void WriteLine();
         void WriteLine(string? value);
         void WriteLine(object value);
     }

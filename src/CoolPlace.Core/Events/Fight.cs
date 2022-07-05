@@ -8,6 +8,7 @@ namespace CoolPlace.Core.Events
         {
             this.attacker = attacker;
             this.defender = defender;
+            _finished = !attacker.IsAlive || !defender.IsAlive;
         }
 
         private bool _finished;
@@ -19,7 +20,7 @@ namespace CoolPlace.Core.Events
             return _finished;
         }
 
-        public void NextTurn()
+        public void NextTurn(bool skipAttacker = false)
         {
             if (_finished)
             {
@@ -32,11 +33,14 @@ namespace CoolPlace.Core.Events
                 return;
             }
 
-            attacker.Attack(defender);
-            if (!defender.IsAlive)
+            if (!skipAttacker)
             {
-                Finish();
-                return;
+                attacker.Attack(defender);
+                if (!defender.IsAlive)
+                {
+                    Finish();
+                    return;
+                }
             }
 
             defender.Attack(attacker);

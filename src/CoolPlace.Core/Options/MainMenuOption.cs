@@ -1,4 +1,4 @@
-﻿namespace CoolPlace.Console.Menus
+﻿namespace CoolPlace.Core.Options
 {
     public enum MainMenuOption
     {

@@ -11,6 +11,8 @@
             return successfulParse ? result : null;
         }
 
+        public void WriteLine() => WriteLine(string.Empty);
+
         public void WriteLine(object value) => WriteLine(value.ToString());
 
         public void WriteLine(string? value)

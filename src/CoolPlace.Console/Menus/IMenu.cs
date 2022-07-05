@@ -3,9 +3,9 @@
     public interface IMenu<T> where T : Enum
     {
         /// <summary>
-        /// Selects the given menu option.
+        /// Get a selected menu option from the user.
         /// </summary>
-        void Choose(T option);
+        T Choose();
         /// <summary>
         /// Prints the available menu options.
         /// </summary>

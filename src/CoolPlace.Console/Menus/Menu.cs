@@ -10,46 +10,13 @@ namespace CoolPlace.Console.Menus
         public Menu(ICLI cli)
         {
             this.cli = cli;
-            menuOptions = new List<MenuOption<T>>();
+            menuOptions = GetMenuOptions();
         }
 
         /// <summary>
         /// Select a menu option from user input.
         /// </summary>
-        public void Choose()
-        {
-            var option = GetOption();
-            Choose(option);
-        }
-
-        public abstract void Choose(T option);
-
-        /// <summary>
-        /// Prints the menu intro.
-        /// </summary>
-        public void PrintIntro()
-        {
-            cli.WriteLine(GetIntro());
-        }
-
-        public void PrintOptions()
-        {
-            foreach (var option in menuOptions)
-            {
-                cli.WriteLine(option);
-            }
-        }
-
-        /// <summary>
-        /// Returns the menu intro.
-        /// </summary>
-        protected abstract string GetIntro();
-
-        /// <summary>
-        /// Prompts the user to make a menu selection until a valid one is chosen.
-        /// </summary>
-        /// <returns></returns>
-        private T GetOption()
+        public T Choose()
         {
             while (true)
             {
@@ -74,8 +41,37 @@ namespace CoolPlace.Console.Menus
                     continue;
                 }
 
+                cli.WriteLine();
+
                 return option;
             }
         }
+
+        /// <summary>
+        /// Prints the menu intro.
+        /// </summary>
+        public void PrintIntro()
+        {
+            cli.WriteLine(GetIntro());
+        }
+
+        public void PrintOptions()
+        {
+            foreach (var option in menuOptions)
+            {
+                cli.WriteLine(option);
+            }
+        }
+
+        /// <summary>
+        /// Returns the menu intro.
+        /// </summary>
+        protected abstract string GetIntro();
+
+        /// <summary>
+        /// Returns the available menu options;
+        /// </summary>
+        /// <returns></returns>
+        protected abstract IEnumerable<MenuOption<T>> GetMenuOptions();
     }
 }
